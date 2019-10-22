@@ -7,7 +7,6 @@ import com.example.mynotes.R;
 import com.example.mynotes.database.Note;
 import com.example.mynotes.fragment.AddNotesFragment;
 import com.example.mynotes.fragment.HomeFragment;
-import com.example.mynotes.fragment.NoteDetailFragment;
 import com.example.mynotes.util.FragmentHelper;
 
 public class HomeActivity extends AppCompatActivity implements HomeFragment.HomeScreenListener,
@@ -29,12 +28,12 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.Home
     }
 
     private void loadAddNotesFragment() {
-        FragmentHelper.addFragmentWithoutAnimation(this, new AddNotesFragment(),
+        FragmentHelper.addFragmentWithoutAnimation(this, new AddNotesFragment(null, false),
                 R.id.fragment_container, "AddNote_fragment");
     }
 
     private void loadNoteDetailsFragment(Note note) {
-        FragmentHelper.addFragmentWithoutAnimation(this, new NoteDetailFragment(note),
+        FragmentHelper.addFragmentWithoutAnimation(this, new AddNotesFragment(note, true),
                 R.id.fragment_container, "AddNote_fragment");
     }
 
@@ -52,5 +51,11 @@ public class HomeActivity extends AppCompatActivity implements HomeFragment.Home
     public void onSaveBtnClick(Note note) {
         FragmentHelper.popBackStackImmediate(this);
         mHomeFragment.saveNotes(note);
+    }
+
+    @Override
+    public void onUpdateNote(Note note) {
+        FragmentHelper.popBackStackImmediate(this);
+        mHomeFragment.updateNotes(note);
     }
 }

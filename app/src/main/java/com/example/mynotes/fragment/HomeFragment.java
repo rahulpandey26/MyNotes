@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -84,6 +86,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,
         mNoteViewModel.insert(note);
     }
 
+    public void updateNotes(Note note){
+        mNoteViewModel.update(note);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -102,6 +108,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,
     public void onDeleteClickListener(Note note) {
         mNoteViewModel.delete(note);
         mAdapter.notifyDataSetChanged();
+        Toast.makeText(getContext(), "Note deleted", Toast.LENGTH_LONG).show();
     }
 
     public interface HomeScreenListener{

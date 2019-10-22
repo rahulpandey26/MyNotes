@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_padding_50dp">50dp</dimen>
+    <dimen name="margin_padding_40dp">40dp</dimen>
     <dimen name="margin_padding_62dp">62dp</dimen>
     <dimen name="margin_padding_17dp">17dp</dimen>
     <dimen name="text_size_13sp">13sp</dimen>

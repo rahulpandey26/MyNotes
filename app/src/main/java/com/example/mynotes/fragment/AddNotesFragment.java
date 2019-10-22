@@ -17,7 +17,13 @@ public class AddNotesFragment extends BaseFragment implements View.OnClickListen
     private AddNoteScreenListener mListener;
     private EditText mTitleEditText;
     private EditText mDescEditText;
-    private TextView mSaveBtn;
+    private Note mNotes;
+    private Boolean mIsFromEdit;
+
+    public AddNotesFragment(Note note, Boolean isFromEdit) {
+        mNotes = note;
+        mIsFromEdit = isFromEdit;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,13 +57,20 @@ public class AddNotesFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializeViews(view);
+        setUiData();
     }
 
     private void initializeViews(View view) {
         mTitleEditText = view.findViewById(R.id.title);
         mDescEditText = view.findViewById(R.id.description);
-        mSaveBtn = view.findViewById(R.id.save_btn);
-        mSaveBtn.setOnClickListener(this);
+        view.findViewById(R.id.save_btn).setOnClickListener(this);
+    }
+
+    private void setUiData() {
+        if(mNotes != null) {
+            mTitleEditText.setText(mNotes.getNoteTitle());
+            mDescEditText.setText(mNotes.getNoteDescription());
+        }
     }
 
     @Override
@@ -72,14 +85,21 @@ public class AddNotesFragment extends BaseFragment implements View.OnClickListen
     private void saveNote() {
         String title = mTitleEditText.getText().toString().trim();
         String desc = mDescEditText.getText().toString().trim();
-        Note note =  new Note();
-        note.setNoteTitle(title);
-        note.setNoteDescription(desc);
-        mListener.onSaveBtnClick(note);
-
+        if(mIsFromEdit){
+            mNotes.setNoteTitle(title);
+            mNotes.setNoteDescription(desc);
+            mListener.onUpdateNote(mNotes);
+        } else {
+            Note note = new Note();
+            note.setNoteTitle(title);
+            note.setNoteDescription(desc);
+            mListener.onSaveBtnClick(note);
+        }
     }
 
     public interface AddNoteScreenListener{
         void onSaveBtnClick(Note note);
+
+        void onUpdateNote(Note note);
     }
 }
