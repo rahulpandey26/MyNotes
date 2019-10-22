@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:background="@color/white">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/title_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:theme="@style/TextInputLayoutStyle"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_border_textview">
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:hint="Description"
+        android:background="@null"
+        android:textSize="@dimen/text_size_13sp"
+        android:padding="10dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_padding_50dp"
+        android:layout_marginBottom="@dimen/margin_padding_35_5dp"
+        android:background="@drawable/selector_button_mango"
+        android:paddingStart="@dimen/margin_padding_62dp"
+        android:paddingTop="@dimen/margin_padding_17dp"
+        android:paddingEnd="@dimen/margin_padding_62dp"
+        android:paddingBottom="@dimen/margin_padding_17dp"
+        android:text="@string/save"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_13sp" />
+
+</LinearLayout>
